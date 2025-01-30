@@ -1,0 +1,34 @@
+document.getElementById("btn").addEventListener("click", function() {
+  var height_val = document.getElementById('height').value; // in cm
+  var weight_val = document.getElementById('weight').value; // in kg
+
+  // Convert height from cm to m
+  var height_in_m = height_val / 100;
+
+  // Calculate BMI
+  var bmi = weight_val / (height_in_m * height_in_m);
+
+  // Round BMI to 2 decimal places
+  var bmio = bmi.toFixed(2);
+
+  // Determine category
+  let category = "";
+  switch (true) {
+      case (bmi < 18.5):
+          category = "Underweight";
+          break;
+      case (bmi >= 18.5 && bmi <= 24.9):
+          category = "Ideal";
+          break;
+      case (bmi >= 25 && bmi <= 29.9):
+          category = "Overweight";
+          break;
+      case (bmi >= 30):
+          category = "Obesity";
+          break;
+      default:
+          category = "Invalid BMI value";
+  }
+
+  document.getElementById("result").innerHTML = "Your BMI is " + bmio + " Category: " + category;
+});
